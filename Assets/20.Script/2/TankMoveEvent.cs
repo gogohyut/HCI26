@@ -37,9 +37,18 @@ public class TankMoveEvent : MonoBehaviour
   //      Vector3 moveDir = transform.forward * move * moveSpeed * Time.deltaTime;
  //       rb.MovePosition(rb.position + moveDir);
   //  }
-  public void TankMove()
+  public void OnTankMove(InputValue value)
     {
-        Debug.Log("Move ");
+        move = Context.ReadValue<float>().y;
+    }
+    public void OnTankRotate(InputValue value)
+    {
+        rotate = Context.ReadValue<float>().x;
+    }
+    void Move()
+    {
+        Vector3 moveDir = transform.forward * move * moveSpeed * Time.deltaTime;
+        rb.MovePosition(rb.position + moveDir);
     }
     void Rotate()
     {

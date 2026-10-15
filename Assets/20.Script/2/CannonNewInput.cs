@@ -1,17 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CannonNewInput : MonoBehaviour
+public class CanonNewinput : MonoBehaviour
 {
-   public GameObject shellPrefab;
-   public Transform fireTrans;
-   GameObject bulletPrefab;
-    void Update()
+    public GameObject shellPrefab;
+    public Transform firetrans;
+
+    GameObject shell;
+
+    void OnFire(InputValue value)
     {
-     if(Input.GetButtonDown("Fire1"))
-     {
-         shell = Instantiate(shellPrefab, fireTrans.position, fireTrans.rotation);
-         shell.GetComponent<shellcontroller>().shoot(fireTrans.up);
-     }
+        shell = Instantiate(shellPrefab, firetrans.position, firetrans.rotation);
+        shell.GetComponent<ShellController>().Shoot(transform.up);
     }
 }
