@@ -34,5 +34,6 @@ public class PlaceSphere : MonoBehaviour
 
         GameObject go = Instantiate(spherePrefab, worldPos, Quaternion.identity);
         go.transform.parent = parentTransform;
+        GameManager.instance.ShowMessage("Sphere generated.");
     }
 }
