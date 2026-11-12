@@ -24,7 +24,9 @@ public class PlaceCar : MonoBehaviour
         List<ARRaycastHit> hits = new List<ARRaycastHit>();
         if(arRayManager.Raycast(screenCenter, hits, TrackableType.Planes))
         {
-            
+            marker.SetActive(true);
+            marker.transform.position = hits[0].pose.position;
         }
+        
     }
 }

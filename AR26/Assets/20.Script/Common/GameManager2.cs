@@ -1,16 +1,25 @@
 using UnityEngine;
 
-public class GameManger2 : MonoBehaviour
+public class GameManager2 : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+     public static GameManager2 instance
     {
-        
+        get
+        {
+            if(m_instance == null)
+            {
+                m_instance = FindAnyObjectByType<GameManager>();
+            }
+            return m_instance;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    static GameManager m_instance;
+    public void GameOver()
     {
-        
+        Application.Quit();
+    }
+    public void GameOver()
+    {
+        Application.Quit();
     }
 }
