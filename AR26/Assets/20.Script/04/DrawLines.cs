@@ -1,15 +1,19 @@
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 
 public class DrawLines : MonoBehaviour
 {
     public LineSettings lineSetting;
     public Camera arCam;
+    Dictionary<int, ARLine> lines = new Dictionary<int, ARLine>();
     ARPlaneManager aRPlaneManager;
     bool initialized = false;
     bool canDraw = false;
     bool isStarting = false;
+    int lineCount = -1;
     void Awake()
     {
         aRPlaneManager = GetComponent<ARPlaneManager>();
@@ -35,7 +39,20 @@ public class DrawLines : MonoBehaviour
     }
     void DrawLine()
     {
-        if(!initialized) return;
         if(!canDraw) return;
+
+        Vector3 drawPosition = arCam.ScreenToViewportPoint(
+            new Vector3(Screen.width/2, Screen.height/2, 0.2f));
+        if(isStarting)
+        {
+            ARLine line = new ARLine(lineSetting);
+            lineCount++;
+            lines.Add(lineCount, line);
+            line.AddNewLineRenderer(transform, drawPosition);
+        }
+        else
+        {
+            lines[lineCount].AddPoint(drawPosition);
+        }
     }
 }
