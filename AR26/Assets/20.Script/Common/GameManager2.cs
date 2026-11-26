@@ -8,18 +8,15 @@ public class GameManager2 : MonoBehaviour
         {
             if(m_instance == null)
             {
-                m_instance = FindAnyObjectByType<GameManager>();
+                m_instance = FindAnyObjectByType<GameManager2>();
             }
             return m_instance;
         }
     }
-    static GameManager m_instance;
+    static GameManager2 m_instance;
     public void GameOver()
     {
         Application.Quit();
     }
-    public void GameOver()
-    {
-        Application.Quit();
-    }
+    
 }
